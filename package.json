@@ -1,6 +1,6 @@
 {
   "name": "rfc-walk",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Transverse files recursively",
   "main": "index.js",
   "scripts": {
