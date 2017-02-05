@@ -9,11 +9,10 @@ describe('walk', function() {
   it('should return the source tree of the project', function() {
 
     const tree = Array.from(walk('.', true)).filter(file => {
-      return !file.includes('node_modules');
+      return !file.includes('node_modules') && !file.includes('.git');
     });
 
     assert.deepStrictEqual(tree, [
-      '.gitignore',
       '.jscsrc',
       'README.md',
       'index.js',
@@ -27,11 +26,10 @@ describe('walk', function() {
   it('should skip folders by default', function() {
 
     const tree = Array.from(walk('.')).filter(file => {
-      return !file.includes('node_modules');
+      return !file.includes('node_modules') && !file.includes('.git');
     });
 
     assert.deepStrictEqual(tree, [
-      '.gitignore',
       '.jscsrc',
       'README.md',
       'index.js',
@@ -43,11 +41,10 @@ describe('walk', function() {
   it('should use the working directory by default', function() {
 
     const tree = Array.from(walk()).filter(file => {
-      return !file.includes('node_modules');
+      return !file.includes('node_modules') && !file.includes('.git');
     });
 
     assert.deepStrictEqual(tree, [
-      '.gitignore',
       '.jscsrc',
       'README.md',
       'index.js',
