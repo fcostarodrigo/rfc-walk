@@ -1,0 +1,33 @@
+{
+  "name": "rfc-walk",
+  "version": "1.0.0",
+  "description": "Transverse files recursively",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha",
+    "posttest": "npm run lint",
+    "lint": "jscs index.js test/test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fcostarodrigo/rfc-walk.git"
+  },
+  "keywords": [
+    "transverse",
+    "files",
+    "recursively",
+    "list",
+    "fs"
+  ],
+  "author": "Rodrigo Fernandes da Costa",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/fcostarodrigo/rfc-walk/issues"
+  },
+  "homepage": "https://github.com/fcostarodrigo/rfc-walk#readme",
+  "devDependencies": {
+    "jscs": "^3.0.7",
+    "mocha": "^3.2.0",
+    "segfault-handler": "^1.0.0"
+  }
+}
