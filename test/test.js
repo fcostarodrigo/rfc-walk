@@ -13,7 +13,7 @@ describe('walk', function() {
     });
 
     assert.deepStrictEqual(tree, [
-      '.jscsrc',
+      '.eslintrc.yml',
       'README.md',
       'index.js',
       'package.json',
@@ -30,7 +30,7 @@ describe('walk', function() {
     });
 
     assert.deepStrictEqual(tree, [
-      '.jscsrc',
+      '.eslintrc.yml',
       'README.md',
       'index.js',
       'package.json',
@@ -45,7 +45,7 @@ describe('walk', function() {
     });
 
     assert.deepStrictEqual(tree, [
-      '.jscsrc',
+      '.eslintrc.yml',
       'README.md',
       'index.js',
       'package.json',
