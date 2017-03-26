@@ -1,6 +1,6 @@
 {
   "name": "rfc-walk",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Transverse files recursively",
   "main": "index.js",
   "scripts": {
@@ -30,6 +30,5 @@
     "mocha": "^3.2.0",
     "segfault-handler": "^1.0.0"
   },
-  "files": [
-  ]
+  "files": []
 }
