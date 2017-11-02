@@ -10,18 +10,22 @@ Simple node module to transverse files recursively.
 
     const walk = require('rfc-walk');
 
-    for (const file of walk()) {
+    for (const file of await walk()) {
       console.log(file);
     }
 
-## Reference
+    await walk({ callback: console.log });
 
-    string *walk([root = '.'], [folders = false])
+    walk().then(console.log);
 
-Generator of paths recursively found in root.
+## Documentation
+
+    async function walk({ root = ".", folders = false, callback } = {})
 
 * `root`: Path of where to start the search.
 * `folders`: If paths of folders should be returned.
+* `callback`: Called with each path found.
+* Returns a promise that resolves to a list of paths or undefined if callback is passed.
 
 ## Development
 
