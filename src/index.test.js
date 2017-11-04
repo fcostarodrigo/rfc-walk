@@ -102,4 +102,44 @@ describe("walk", () => {
     expect(callback.mock.calls[2][0]).toBe("c/d");
     expect(callback.mock.calls[3][0]).toBe("c/e");
   });
+
+  it("should wait for all callbacks to resolve", async () => {
+    fs.readdir.mockImplementationOnce((folder, callback) => {
+      expect(folder).toBe(".");
+      callback(null, ["a", "b", "c"]);
+    });
+    fs.readdir.mockImplementationOnce((folder, callback) => {
+      expect(folder).toBe("a");
+      callback({ code: "ENOTDIR" });
+    });
+    fs.readdir.mockImplementationOnce((folder, callback) => {
+      expect(folder).toBe("b");
+      callback({ code: "ENOTDIR" });
+    });
+    fs.readdir.mockImplementationOnce((folder, callback) => {
+      expect(folder).toBe("c");
+      callback(null, ["d", "e"]);
+    });
+    fs.readdir.mockImplementationOnce((folder, callback) => {
+      expect(folder).toBe("c/d");
+      callback({ code: "ENOTDIR" });
+    });
+    fs.readdir.mockImplementationOnce((folder, callback) => {
+      expect(folder).toBe("c/e");
+      callback({ code: "ENOTDIR" });
+    });
+
+    const files = [];
+    const callback = file =>
+      new Promise(resolve =>
+        setTimeout(() => {
+          files.push(file);
+          resolve();
+        })
+      );
+
+    await walk({ callback });
+
+    expect(files).toEqual(["a", "b", "c/d", "c/e"]);
+  });
 });

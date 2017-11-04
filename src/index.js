@@ -10,13 +10,13 @@ const walk = async ({ root = ".", folders = false, callback } = {}) => {
 
   try {
     const files = await readdir(root);
-    if (folders) push(root);
+    if (folders) await push(root);
     const recurse = async file =>
       walk({ root: path.join(root, file), folders, callback: push });
     await Promise.all(files.map(recurse));
   } catch (error) {
     if (error.code === "ENOTDIR") {
-      push(root);
+      await push(root);
     } else {
       throw error;
     }
