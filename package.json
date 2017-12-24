@@ -1,6 +1,6 @@
 {
   "name": "rfc-walk",
-  "version": "3.0.1",
+  "version": "3.0.2",
   "description": "Transverse files recursively",
   "main": "src/index.js",
   "types": "src/index.d.ts",
@@ -12,13 +12,22 @@
     "format": "prettier --write \"**/*.js\""
   },
   "lint-staged": {
-    "*.js": ["npm run format", "git add"]
+    "*.js": [
+      "npm run format",
+      "git add"
+    ]
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/fcostarodrigo/rfc-walk.git"
   },
-  "keywords": ["transverse", "files", "recursively", "list", "fs"],
+  "keywords": [
+    "transverse",
+    "files",
+    "recursively",
+    "list",
+    "fs"
+  ],
   "author": "Rodrigo Fernandes da Costa",
   "license": "MIT",
   "bugs": {
