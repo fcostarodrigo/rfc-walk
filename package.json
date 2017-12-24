@@ -3,6 +3,7 @@
   "version": "2.1.0",
   "description": "Transverse files recursively",
   "main": "src/index.js",
+  "types": "src/index.d.ts",
   "scripts": {
     "test": "jest --coverage",
     "pretest": "eslint src"
@@ -11,13 +12,7 @@
     "type": "git",
     "url": "git+https://github.com/fcostarodrigo/rfc-walk.git"
   },
-  "keywords": [
-    "transverse",
-    "files",
-    "recursively",
-    "list",
-    "fs"
-  ],
+  "keywords": ["transverse", "files", "recursively", "list", "fs"],
   "author": "Rodrigo Fernandes da Costa",
   "license": "MIT",
   "bugs": {
@@ -33,6 +28,5 @@
     "eslint-plugin-prettier": "^2.4.0",
     "jest": "^21.2.1",
     "prettier": "^1.9.2"
-  },
-  "files": []
+  }
 }
