@@ -41,7 +41,7 @@ describe("walk", () => {
     return expect(walk()).rejects.toBe(error);
   });
 
-  it("should transverse from a folder", async () => {
+  it("should transverse starting in a folder", async () => {
     fs.readdir.mockImplementationOnce((folder, callback) => {
       expect(folder).toBe("a/a");
       callback(null, ["a"]);
@@ -62,10 +62,10 @@ describe("walk", () => {
       expect(folder).toBe("a");
       callback({ code: "ENOTDIR" });
     });
-    expect(await walk({ folders: true })).toEqual([".", "a"]);
+    expect(await walk({ includeFolders: true })).toEqual([".", "a"]);
   });
 
-  it("should callback for each file", async () => {
+  it("should call onPath for each file", async () => {
     fs.readdir.mockImplementationOnce((folder, callback) => {
       expect(folder).toBe(".");
       callback(null, ["a", "b", "c"]);
@@ -91,14 +91,14 @@ describe("walk", () => {
       callback({ code: "ENOTDIR" });
     });
 
-    const callback = jest.fn();
+    const onPath = jest.fn();
 
-    await walk({ callback });
+    await walk({ onPath });
 
-    expect(callback.mock.calls[0][0]).toBe("a");
-    expect(callback.mock.calls[1][0]).toBe("b");
-    expect(callback.mock.calls[2][0]).toBe("c/d");
-    expect(callback.mock.calls[3][0]).toBe("c/e");
+    expect(onPath.mock.calls[0][0]).toBe("a");
+    expect(onPath.mock.calls[1][0]).toBe("b");
+    expect(onPath.mock.calls[2][0]).toBe("c/d");
+    expect(onPath.mock.calls[3][0]).toBe("c/e");
   });
 
   it("should wait for all callbacks to resolve", async () => {
@@ -128,7 +128,7 @@ describe("walk", () => {
     });
 
     const files = [];
-    const callback = file =>
+    const onPath = file =>
       new Promise(resolve =>
         setTimeout(() => {
           files.push(file);
@@ -136,7 +136,7 @@ describe("walk", () => {
         })
       );
 
-    await walk({ callback });
+    await walk({ onPath });
 
     expect(files).toEqual(["a", "b", "c/d", "c/e"]);
   });
