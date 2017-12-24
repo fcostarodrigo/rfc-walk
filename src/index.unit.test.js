@@ -53,15 +53,15 @@ describe("walk", () => {
     mockReadDir([
       { folder: ".", result: [null, ["a", "b"]] },
       { folder: "a", result: [null, ["c"]] },
-      { folder: "b", result: [{ code: "ENOTDIR" }] },
-      { folder: "a/c", result: [{ code: "ENOTDIR" }] }
+      { folder: "a/c", result: [{ code: "ENOTDIR" }] },
+      { folder: "b", result: [{ code: "ENOTDIR" }] }
     ]);
 
     expect(await walk({ includeFolders: true })).toEqual([
       ".",
       "a",
-      "b",
-      "a/c"
+      "a/c",
+      "b"
     ]);
   });
 

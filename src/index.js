@@ -1,10 +1,7 @@
 const fs = require("fs");
 const path = require("path");
-const util = require("util");
 
-const readdir = util.promisify(fs.readdir);
-
-const walk = async ({ root = ".", includeFolders = false, onPath } = {}) => {
+const walk = ({ root = ".", includeFolders = false, onPath } = {}) => {
   const paths = [];
   onPath = onPath || paths.push.bind(paths); // eslint-disable-line no-param-reassign
 
@@ -15,19 +12,18 @@ const walk = async ({ root = ".", includeFolders = false, onPath } = {}) => {
       onPath
     });
 
-  try {
-    const files = await readdir(root);
-    const folder = includeFolders ? onPath(root) : Promise.resolve();
-    await Promise.all([folder, ...files.map(recurse)]);
-  } catch (error) {
-    if (error.code === "ENOTDIR") {
-      await onPath(root);
-    } else {
-      throw error;
-    }
-  }
-
-  return paths;
+  return new Promise((resolve, reject) =>
+    fs.readdir(root, (error, files) => {
+      if (error && error.code === "ENOTDIR") {
+        Promise.resolve(onPath(root)).then(() => resolve(paths));
+      } else if (!error) {
+        const folder = Promise.resolve(includeFolders ? onPath(root) : null);
+        Promise.all([folder, ...files.map(recurse)]).then(() => resolve(paths));
+      } else {
+        reject(error);
+      }
+    })
+  );
 };
 
 module.exports = walk;
