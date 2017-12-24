@@ -5,6 +5,7 @@
   "main": "src/index.js",
   "types": "src/index.d.ts",
   "scripts": {
+    "posttest": "codecov",
     "test": "jest --coverage",
     "pretest": "eslint src"
   },
@@ -12,13 +13,7 @@
     "type": "git",
     "url": "git+https://github.com/fcostarodrigo/rfc-walk.git"
   },
-  "keywords": [
-    "transverse",
-    "files",
-    "recursively",
-    "list",
-    "fs"
-  ],
+  "keywords": ["transverse", "files", "recursively", "list", "fs"],
   "author": "Rodrigo Fernandes da Costa",
   "license": "MIT",
   "bugs": {
@@ -26,6 +21,7 @@
   },
   "homepage": "https://github.com/fcostarodrigo/rfc-walk#readme",
   "devDependencies": {
+    "codecov": "^3.0.0",
     "eslint": "^4.14.0",
     "eslint-config-airbnb-base": "^12.1.0",
     "eslint-config-prettier": "^2.9.0",
