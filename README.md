@@ -2,6 +2,7 @@
 
 [![Travis](https://img.shields.io/travis/fcostarodrigo/rfc-walk.svg)](https://travis-ci.org/fcostarodrigo/rfc-walk)
 [![Codecov](https://img.shields.io/codecov/c/github/fcostarodrigo/rfc-walk.svg)](https://codecov.io/gh/fcostarodrigo/rfc-walk/)
+[![Code Climate](https://img.shields.io/codeclimate/maintainability/fcostarodrigo/rfc-walk.svg)](https://codeclimate.com/github/fcostarodrigo/rfc-walk)
 
 Simple node module to transverse files recursively.
 
