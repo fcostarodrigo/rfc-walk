@@ -33,8 +33,8 @@ describe("walk", () => {
   it("should propagate errors", () => {
     const error = new Error("error");
 
-    fs.readdir.mockImplementationOnce(() => {
-      throw error;
+    fs.readdir.mockImplementationOnce((folder, callback) => {
+      callback(error);
     });
 
     return expect(walk()).rejects.toBe(error);
