@@ -1,8 +1,8 @@
 # RFC-WALK
 
-[![Travis](https://img.shields.io/travis/fcostarodrigo/rfc-walk.svg)](https://travis-ci.org/fcostarodrigo/rfc-walk)
-[![Code Climate](https://img.shields.io/codeclimate/coverage/github/fcostarodrigo/rfc-walk.svg)]()
-[![Code Climate](https://img.shields.io/codeclimate/maintainability/fcostarodrigo/rfc-walk.svg)](https://codeclimate.com/github/fcostarodrigo/rfc-walk)
+[![Build Status](https://travis-ci.org/fcostarodrigo/rfc-walk.svg?branch=travis)](https://travis-ci.org/fcostarodrigo/rfc-walk)
+[![Maintainability](https://api.codeclimate.com/v1/badges/913749fe929e7b001441/maintainability)](https://codeclimate.com/github/fcostarodrigo/rfc-walk/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/913749fe929e7b001441/test_coverage)](https://codeclimate.com/github/fcostarodrigo/rfc-walk/test_coverage)
 
 Simple node module to transverse files recursively.
 
