@@ -1,5 +1,3 @@
-/* eslint-env jest */
-
 const fs = require("fs");
 const walk = require("./index");
 
