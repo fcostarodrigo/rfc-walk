@@ -2,6 +2,7 @@
 
 [![Travis](https://img.shields.io/travis/fcostarodrigo/rfc-walk.svg)](https://travis-ci.org/fcostarodrigo/rfc-walk)
 [![Codecov](https://img.shields.io/codecov/c/github/fcostarodrigo/rfc-walk.svg)](https://codecov.io/gh/fcostarodrigo/rfc-walk/)
+[![Code Climate](https://img.shields.io/codeclimate/maintainability/fcostarodrigo/rfc-walk.svg)](https://codeclimate.com/github/fcostarodrigo/rfc-walk)
 
 Simple node module to transverse files recursively.
 
@@ -28,12 +29,16 @@ walk().then(console.log);
 ## Documentation
 
 ```typescript
-function walk({ root = ".", includeFolders = false, onPath: (path: string) => void } = {}): Promise<string[]>
+function walk(options?: {
+  root?: string;
+  includeFolders?: boolean;
+  onPath?: (path: string) => Promise<void> | undefined;
+}): Promise<string[]>;
 ```
 
 * `root`: Path to where start the search.
 * `includeFolders`: If paths of folders should be returned.
-* `onPath`: Called with each path found.
+* `onPath`: Called with each path found. If it returns a promise, walk will wait for it to resolve.
 * Returns a promise that resolves after the search is finished and it is resolved with a list of paths if onPath is not passed.
 
 ## Development

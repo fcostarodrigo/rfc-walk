@@ -33,8 +33,8 @@ describe("walk", () => {
   it("should propagate errors", () => {
     const error = new Error("error");
 
-    fs.readdir.mockImplementationOnce(() => {
-      throw error;
+    fs.readdir.mockImplementationOnce((folder, callback) => {
+      callback(error);
     });
 
     return expect(walk()).rejects.toBe(error);
@@ -51,11 +51,18 @@ describe("walk", () => {
 
   it("should list folders", async () => {
     mockReadDir([
-      { folder: ".", result: [null, ["a"]] },
-      { folder: "a", result: [{ code: "ENOTDIR" }] }
+      { folder: ".", result: [null, ["a", "b"]] },
+      { folder: "a", result: [null, ["c"]] },
+      { folder: "a/c", result: [{ code: "ENOTDIR" }] },
+      { folder: "b", result: [{ code: "ENOTDIR" }] }
     ]);
 
-    expect(await walk({ includeFolders: true })).toEqual([".", "a"]);
+    expect(await walk({ includeFolders: true })).toEqual([
+      ".",
+      "a",
+      "a/c",
+      "b"
+    ]);
   });
 
   it("should call onPath for each file", async () => {
