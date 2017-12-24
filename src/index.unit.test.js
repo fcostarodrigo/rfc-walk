@@ -51,11 +51,18 @@ describe("walk", () => {
 
   it("should list folders", async () => {
     mockReadDir([
-      { folder: ".", result: [null, ["a"]] },
-      { folder: "a", result: [{ code: "ENOTDIR" }] }
+      { folder: ".", result: [null, ["a", "b"]] },
+      { folder: "a", result: [null, ["c"]] },
+      { folder: "b", result: [{ code: "ENOTDIR" }] },
+      { folder: "a/c", result: [{ code: "ENOTDIR" }] }
     ]);
 
-    expect(await walk({ includeFolders: true })).toEqual([".", "a"]);
+    expect(await walk({ includeFolders: true })).toEqual([
+      ".",
+      "a",
+      "b",
+      "a/c"
+    ]);
   });
 
   it("should call onPath for each file", async () => {
