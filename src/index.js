@@ -14,10 +14,8 @@ const walk = async ({ root = ".", includeFolders = false, onPath } = {}) => {
   const recurse = file =>
     walk({ root: path.join(root, file), includeFolders, onPath });
 
-  const onFiles = files => {
-    const folder = includeFolders ? onPath(root) : null;
-    return Promise.all([folder, ...files.map(recurse)]);
-  };
+  const onFiles = files =>
+    Promise.all([includeFolders && onPath(root), ...files.map(recurse)]);
 
   await readdir(root)
     .then(onFiles)
