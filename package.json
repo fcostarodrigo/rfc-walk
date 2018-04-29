@@ -5,29 +5,17 @@
   "main": "src/index.js",
   "types": "src/index.d.ts",
   "scripts": {
-    "precommit": "lint-staged && npm test",
+    "precommit": "pretty-quick --staged && npm test",
     "test": "jest unit int --coverage",
     "pretest": "eslint src",
     "unit-test": "jest unit --watch",
-    "format": "prettier --write \"**/*.js\""
-  },
-  "lint-staged": {
-    "*.js": [
-      "npm run format",
-      "git add"
-    ]
+    "format": "pretty-quick"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/fcostarodrigo/rfc-walk.git"
   },
-  "keywords": [
-    "transverse",
-    "files",
-    "recursively",
-    "list",
-    "fs"
-  ],
+  "keywords": ["transverse", "files", "recursively", "list", "fs"],
   "author": "Rodrigo Fernandes da Costa",
   "license": "MIT",
   "bugs": {
@@ -35,15 +23,15 @@
   },
   "homepage": "https://github.com/fcostarodrigo/rfc-walk#readme",
   "devDependencies": {
-    "eslint": "^4.14.0",
+    "eslint": "^4.19.1",
     "eslint-config-airbnb-base": "^12.1.0",
     "eslint-config-prettier": "^2.9.0",
-    "eslint-plugin-import": "^2.8.0",
-    "eslint-plugin-jest": "^21.5.0",
-    "eslint-plugin-prettier": "^2.4.0",
+    "eslint-plugin-import": "^2.11.0",
+    "eslint-plugin-jest": "^21.15.1",
+    "eslint-plugin-prettier": "^2.6.0",
     "husky": "^0.14.3",
-    "jest": "^21.2.1",
-    "lint-staged": "^6.0.0",
-    "prettier": "^1.9.2"
+    "jest": "^22.4.3",
+    "prettier": "^1.12.1",
+    "pretty-quick": "^1.4.1"
   }
 }
