@@ -6,6 +6,8 @@
 
 Simple node module to transverse files recursively.
 
+DEPRECATED: See [@fcostarodrigo/walk](https://www.npmjs.com/package/@fcostarodrigo/walk)
+
 ## Installation
 
 ```bash
