@@ -8,18 +8,16 @@ const walk = async ({ root = ".", includeFolders = false, onPath } = {}) => {
   const paths = [];
   onPath = onPath || paths.push.bind(paths); // eslint-disable-line no-param-reassign
 
-  const onError = error =>
+  const onError = (error) =>
     error.code === "ENOTDIR" ? onPath(root) : Promise.reject(error);
 
-  const recurse = file =>
+  const recurse = (file) =>
     walk({ root: path.join(root, file), includeFolders, onPath });
 
-  const onFiles = files =>
+  const onFiles = (files) =>
     Promise.all([includeFolders && onPath(root), ...files.map(recurse)]);
 
-  await readdir(root)
-    .then(onFiles)
-    .catch(onError);
+  await readdir(root).then(onFiles).catch(onError);
 
   return paths;
 };
