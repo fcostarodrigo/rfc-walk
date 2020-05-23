@@ -9,14 +9,14 @@ const expectedPaths = [
   "tests/sampleToTransverse/c/d",
   "tests/sampleToTransverse/c/d/e",
   "tests/sampleToTransverse/c/f",
-  "tests/sampleToTransverse/i"
+  "tests/sampleToTransverse/i",
 ];
 
 describe("walk", () => {
   it("should walk the sample folder recursively", async () => {
     const paths = await walk({
       root: "tests/sampleToTransverse",
-      includeFolders: true
+      includeFolders: true,
     });
 
     expect(paths.sort()).toEqual(expectedPaths);
@@ -24,8 +24,8 @@ describe("walk", () => {
 
   it("should wait for all promises returned by onPath to resolve", async () => {
     const paths = [];
-    const onPath = path =>
-      new Promise(resolve =>
+    const onPath = (path) =>
+      new Promise((resolve) =>
         setTimeout(() => {
           paths.push(path);
           resolve();
@@ -35,7 +35,7 @@ describe("walk", () => {
     await walk({
       onPath,
       root: "tests/sampleToTransverse",
-      includeFolders: true
+      includeFolders: true,
     });
 
     expect(paths.sort()).toEqual(expectedPaths);

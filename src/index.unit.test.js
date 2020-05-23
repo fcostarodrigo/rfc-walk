@@ -3,7 +3,7 @@ const walk = require("./index");
 
 jest.mock("fs");
 
-const mockReadDir = results => {
+const mockReadDir = (results) => {
   for (const { folder: expectedFolder, result } of results) {
     fs.readdir.mockImplementationOnce((folder, callback) => {
       expect(folder).toBe(expectedFolder);
@@ -24,7 +24,7 @@ describe("walk", () => {
       { folder: "b", result: [{ code: "ENOTDIR" }] },
       { folder: "c", result: [null, ["d", "e"]] },
       { folder: "c/d", result: [{ code: "ENOTDIR" }] },
-      { folder: "c/e", result: [{ code: "ENOTDIR" }] }
+      { folder: "c/e", result: [{ code: "ENOTDIR" }] },
     ]);
 
     expect(await walk()).toEqual(["a", "b", "c/d", "c/e"]);
@@ -43,7 +43,7 @@ describe("walk", () => {
   it("should transverse starting in a folder", async () => {
     mockReadDir([
       { folder: "a/a", result: [null, ["a"]] },
-      { folder: "a/a/a", result: [{ code: "ENOTDIR" }] }
+      { folder: "a/a/a", result: [{ code: "ENOTDIR" }] },
     ]);
 
     expect(await walk({ root: "a/a" })).toEqual(["a/a/a"]);
@@ -54,14 +54,14 @@ describe("walk", () => {
       { folder: ".", result: [null, ["a", "b"]] },
       { folder: "a", result: [null, ["c"]] },
       { folder: "b", result: [{ code: "ENOTDIR" }] },
-      { folder: "a/c", result: [{ code: "ENOTDIR" }] }
+      { folder: "a/c", result: [{ code: "ENOTDIR" }] },
     ]);
 
     expect(await walk({ includeFolders: true })).toEqual([
       ".",
       "a",
       "b",
-      "a/c"
+      "a/c",
     ]);
   });
 
@@ -70,7 +70,7 @@ describe("walk", () => {
       { folder: ".", result: [null, ["a", "c"]] },
       { folder: "a", result: [{ code: "ENOTDIR" }] },
       { folder: "c", result: [null, ["d"]] },
-      { folder: "c/d", result: [{ code: "ENOTDIR" }] }
+      { folder: "c/d", result: [{ code: "ENOTDIR" }] },
     ]);
 
     const onPath = jest.fn();

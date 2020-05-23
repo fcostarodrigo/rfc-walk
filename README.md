@@ -6,6 +6,8 @@
 
 Simple node module to transverse files recursively.
 
+DEPRECATED: See [@fcostarodrigo/walk](https://www.npmjs.com/package/@fcostarodrigo/walk)
+
 ## Installation
 
 ```bash
@@ -15,7 +17,7 @@ npm install rfc-walk
 ## Usage
 
 ```javascript
-const walk = require('rfc-walk');
+const walk = require("rfc-walk");
 
 for (const file of await walk()) {
   console.log(file);
@@ -36,10 +38,10 @@ function walk(options?: {
 }): Promise<string[]>;
 ```
 
-* `root`: Path to where start the search.
-* `includeFolders`: If paths of folders should be returned.
-* `onPath`: Called with each path found. If it returns a promise, walk will wait for it to resolve.
-* Returns a promise that resolves after the search is finished and it is resolved with a list of paths if onPath is not passed.
+- `root`: Path to where start the search.
+- `includeFolders`: If paths of folders should be returned.
+- `onPath`: Called with each path found. If it returns a promise, walk will wait for it to resolve.
+- Returns a promise that resolves after the search is finished and it is resolved with a list of paths if onPath is not passed.
 
 ## Development
 
